@@ -1,4 +1,5 @@
 export * from './ban-user.type'
+export * from './create-user.type'
 export * from './paginated-users-response.type'
 export * from './update-user-roles.type'
 export * from './user-query.schema'

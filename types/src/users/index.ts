@@ -1,6 +1,5 @@
 export * from './ban-user.schema'
 export * from './ban-user.type'
-export * from './create-user.type'
 export * from './create-user.schema'
 export * from './create-user.type'
 export * from './paginated-users-response.type'

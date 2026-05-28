@@ -1,3 +1,4 @@
+export * from './category-mutations.schema'
 export * from './category-response.type'
 export * from './category-with-children-response.type'
 export * from './create-category.type'

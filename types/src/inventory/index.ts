@@ -1,6 +1,7 @@
 export * from './adjust-inventory.type'
 export * from './area-summary.type'
 export * from './create-inventory.type'
+export * from './inventory-mutations.schema'
 export * from './inventory-query.schema'
 export * from './inventory-query.type'
 export * from './inventory-response.type'

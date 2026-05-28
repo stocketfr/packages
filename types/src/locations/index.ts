@@ -1,4 +1,5 @@
 export * from './create-location.type'
+export * from './location-mutations.schema'
 export * from './location-query.schema'
 export * from './location-query.type'
 export * from './location-response.type'

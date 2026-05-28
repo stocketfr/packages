@@ -1,3 +1,4 @@
+export * from './client-mutations.schema'
 export * from './client-query.schema'
 export * from './client-query.type'
 export * from './client-response.type'

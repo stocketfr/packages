@@ -1,3 +1,4 @@
+export * from './area-mutations.schema'
 export * from './area-query.schema'
 export * from './area-query.type'
 export * from './area-response.type'

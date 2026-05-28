@@ -1,6 +1,7 @@
 export * from './audit-action.enum'
 export * from './audit-changes.type'
 export * from './audit-entity-type.enum'
+export * from './audit-log-query.schema'
 export * from './audit-log-query.type'
 export * from './audit-log-response.type'
 export * from './paginated-audit-logs-response.type'

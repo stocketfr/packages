@@ -1,12 +1,12 @@
 {
-  "name": "@librestock/types",
+  "name": "@stocket/types",
   "version": "1.7.0",
   "type": "module",
-  "description": "Shared TypeScript interfaces and enums for LibreStock",
+  "description": "Shared TypeScript interfaces and enums for Stocket",
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/librestock/packages.git",
+    "url": "https://github.com/stocket/packages.git",
     "directory": "types"
   },
   "main": "./dist/cjs/index.js",

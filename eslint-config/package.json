@@ -1,11 +1,11 @@
 {
-  "name": "@librestock/eslint-config",
+  "name": "@stocket/eslint-config",
   "version": "1.2.0",
-  "description": "Shared ESLint configurations for LibreStock Inventory monorepo",
+  "description": "Shared ESLint configurations for Stocket Inventory monorepo",
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/librestock/packages.git",
+    "url": "https://github.com/stocket/packages.git",
     "directory": "eslint-config"
   },
   "type": "module",

@@ -7,11 +7,11 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 /**
- * Base ESLint configuration for LibreStock monorepo.
+ * Base ESLint configuration for Stocket monorepo.
  * Modules should import this and extend with their own rules.
  *
  * Usage:
- *   import baseConfig from '@librestock/eslint-config'
+ *   import baseConfig from '@stocket/eslint-config'
  *   export default tseslint.config(...baseConfig, { ...moduleSpecificRules })
  */
 export default tseslint.config(
@@ -52,9 +52,9 @@ export default tseslint.config(
         {
           paths: [
             {
-              name: '@librestock/types',
+              name: '@stocket/types',
               message:
-                'Use explicit subpath imports, e.g. @librestock/types/<domain>.',
+                'Use explicit subpath imports, e.g. @stocket/types/<domain>.',
             },
           ],
         },

@@ -108,11 +108,11 @@ function formatGroupedImport(domain, specs) {
     : specs.map(formatSpec)
 
   const keyword = allTypeOnly ? 'import type' : 'import'
-  return `${keyword} { ${formattedSpecs.join(', ')} } from '@librestock/types/${domain}'`
+  return `${keyword} { ${formattedSpecs.join(', ')} } from '@stocket/types/${domain}'`
 }
 
 function rewriteRootImports(source, symbolToDomain, unresolved) {
-  const pattern = /^import\s+(type\s+)?\{([^}]+)\}\s+from\s+['"]@librestock\/types['"];?$/gm
+  const pattern = /^import\s+(type\s+)?\{([^}]+)\}\s+from\s+['"]@stocket\/types['"];?$/gm
 
   return source.replace(pattern, (fullMatch, importTypePrefix, specifierList) => {
     const specs = specifierList
@@ -163,7 +163,7 @@ function run() {
   let updated = 0
   for (const file of files) {
     const original = readFileSync(file, 'utf8')
-    if (!original.includes("@librestock/types'") && !original.includes('@librestock/types"')) {
+    if (!original.includes("@stocket/types'") && !original.includes('@stocket/types"')) {
       continue
     }
 
@@ -174,7 +174,7 @@ function run() {
     }
   }
 
-  console.log(`Updated ${updated} file(s) with @librestock/types subpath imports.`)
+  console.log(`Updated ${updated} file(s) with @stocket/types subpath imports.`)
   if (unresolved.size > 0) {
     const symbols = [...unresolved].sort((a, b) => a.localeCompare(b))
     console.warn(`Unresolved symbols (${symbols.length}): ${symbols.join(', ')}`)

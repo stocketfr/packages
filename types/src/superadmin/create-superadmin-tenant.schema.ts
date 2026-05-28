@@ -1,9 +1,8 @@
 import { Schema } from 'effect'
 import { EmailSchema } from '../common/schema-helpers.schema'
+import { TenantSlugSchema } from '../common/tenant-slug.schema'
 
-export const TenantSlugSchema = Schema.Trim.pipe(
-  Schema.pattern(/^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/),
-).annotations({ identifier: 'TenantSlug' })
+export { TenantSlugSchema } from '../common/tenant-slug.schema'
 
 export const CreateSuperAdminTenantSchema = Schema.Struct({
   name: Schema.Trim.pipe(Schema.minLength(1), Schema.maxLength(200)),

@@ -1,6 +1,6 @@
 {
   "name": "@stocket/eslint-config",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Shared ESLint configurations for Stocket Inventory monorepo",
   "license": "AGPL-3.0",
   "repository": {

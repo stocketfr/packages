@@ -6,6 +6,7 @@ export * from './bulk-update-status.type';
 export * from './category-summary.type';
 export * from './create-product.schema';
 export * from './create-product.type';
+export * from './normalized-product-import.type';
 export * from './paginated-products-response.type';
 export * from './product-import-result.type';
 export * from './product-import-preview.type';

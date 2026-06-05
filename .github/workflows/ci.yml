@@ -22,28 +22,5 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Require version bump for changed packages
-        if: github.event_name == 'pull_request'
-        run: |
-          git fetch origin "${{ github.base_ref }}" --depth=1
-
-          changed=0
-          for dir in types eslint-config tsconfig; do
-            if git diff --name-only "origin/${{ github.base_ref }}...HEAD" -- "$dir" | grep -q .; then
-              changed=1
-              base_version="$(git show "origin/${{ github.base_ref }}:${dir}/package.json" | node -pe "JSON.parse(require('fs').readFileSync(0, 'utf8')).version")"
-              head_version="$(node -p "require('./${dir}/package.json').version")"
-
-              if [ "$base_version" = "$head_version" ]; then
-                echo "${dir} changed without a package.json version bump."
-                exit 1
-              fi
-            fi
-          done
-
-          if [ "$changed" = "0" ]; then
-            echo "No publishable package changes detected."
-          fi
-
       - name: Build packages
         run: pnpm build

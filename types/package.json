@@ -1,6 +1,6 @@
 {
   "name": "@stocket/types",
-  "version": "1.7.3",
+  "private": true,
   "type": "module",
   "description": "Shared TypeScript interfaces and enums for Stocket",
   "license": "AGPL-3.0",
@@ -189,25 +189,21 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
-    "zod": "^4.3.6"
+    "zod": "catalog:"
   },
   "peerDependencies": {
     "effect": "^3.19.0"
   },
   "devDependencies": {
-    "effect": "^3.21.0",
-    "typescript": "^6.0.2"
+    "effect": "catalog:",
+    "typescript": "catalog:"
   },
   "sideEffects": false,
   "scripts": {
     "barrels": "node ./scripts/generate-barrels.mjs",
     "codemod:subpath-imports": "node ./scripts/rewrite-root-imports.mjs",
     "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json && node scripts/fix-esm-extensions.mjs",
-    "dev": "tsc -p tsconfig.build.json --watch",
-    "prepare": "pnpm build"
+    "dev": "tsc -p tsconfig.build.json --watch"
   }
 }

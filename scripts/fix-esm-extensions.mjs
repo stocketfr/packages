@@ -1,7 +1,10 @@
+// Shared post-build step for the dual-output packages (types, emails):
+// appends .js to extensionless relative imports in the ESM output. Runs with
+// the package directory as cwd (pnpm runs scripts from the package root).
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 
-const target = resolve(new URL('.', import.meta.url).pathname, '..', 'dist', 'esm')
+const target = resolve(process.cwd(), 'dist', 'esm')
 
 const walk = (dir) => {
   for (const entry of readdirSync(dir)) {

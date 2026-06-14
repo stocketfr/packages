@@ -79,6 +79,12 @@
       "require": "./dist/cjs/locations/index.js",
       "default": "./dist/esm/locations/index.js"
     },
+    "./notifications": {
+      "types": "./dist/esm/notifications/index.d.ts",
+      "import": "./dist/esm/notifications/index.js",
+      "require": "./dist/cjs/notifications/index.js",
+      "default": "./dist/esm/notifications/index.js"
+    },
     "./orders": {
       "types": "./dist/esm/orders/index.d.ts",
       "import": "./dist/esm/orders/index.js",
@@ -160,6 +166,9 @@
       "locations": [
         "dist/esm/locations/index.d.ts"
       ],
+      "notifications": [
+        "dist/esm/notifications/index.d.ts"
+      ],
       "orders": [
         "dist/esm/orders/index.d.ts"
       ],
@@ -203,7 +212,7 @@
   "scripts": {
     "barrels": "node ./scripts/generate-barrels.mjs",
     "codemod:subpath-imports": "node ./scripts/rewrite-root-imports.mjs",
-    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json && node scripts/fix-esm-extensions.mjs",
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json && node ../scripts/fix-esm-extensions.mjs",
     "dev": "tsc -p tsconfig.build.json --watch"
   }
 }

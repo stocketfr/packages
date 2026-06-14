@@ -1,0 +1,43 @@
+{
+  "name": "@stocket/emails",
+  "private": true,
+  "type": "module",
+  "description": "Transactional email templates (react-email) for Stocket",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stocketfr/packages.git",
+    "directory": "emails"
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@react-email/components": "catalog:",
+    "@react-email/render": "catalog:",
+    "react": "catalog:react-web",
+    "react-dom": "catalog:react-web"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json && node ../scripts/fix-esm-extensions.mjs",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "test": "vitest run"
+  }
+}

@@ -42,9 +42,9 @@ export function isLocalHostname(value: string | null | undefined): boolean {
 }
 
 export function readRequiredHostEnv(name: string, env?: EnvSource): string {
-  const value = normalizeHost(readOptionalEnv(name, env))
-  if (!value) {
+  const host = normalizeHost(readOptionalEnv(name, env))
+  if (!host) {
     throw new Error(`${name} environment variable is required`)
   }
-  return value
+  return host
 }

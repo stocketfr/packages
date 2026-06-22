@@ -1,3 +1,5 @@
+import type { ProductImportResultDto } from '../products/product-import-result.type'
+
 export interface SuperAdminCreateTenantResponse {
   readonly tenant: {
     readonly id: string
@@ -10,4 +12,5 @@ export interface SuperAdminCreateTenantResponse {
     readonly email: string
     readonly name: string
   }
+  readonly productImport?: ProductImportResultDto
 }

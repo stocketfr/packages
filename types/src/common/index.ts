@@ -1,6 +1,7 @@
 export * from './base-response.type'
 export * from './bulk-operation.utils'
 export * from './entity-id.type'
+export * from './env.utils'
 export * from './error-code.enum'
 export * from './error-response.type'
 export * from './hateoas-link.type'

@@ -1,3 +1,5 @@
+import { readOptionalEnv, type EnvSource } from './env.utils'
+
 const LOCAL_HOSTNAMES = new Set(['localhost', '127.0.0.1', '::1'])
 
 export function firstHeaderValue(
@@ -37,4 +39,12 @@ export function isLocalHostname(value: string | null | undefined): boolean {
     hostname !== null &&
     (LOCAL_HOSTNAMES.has(hostname) || hostname.endsWith('.localhost'))
   )
+}
+
+export function readRequiredHostEnv(name: string, env?: EnvSource): string {
+  const value = normalizeHost(readOptionalEnv(name, env))
+  if (!value) {
+    throw new Error(`${name} environment variable is required`)
+  }
+  return value
 }

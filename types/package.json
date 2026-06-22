@@ -67,6 +67,12 @@
       "require": "./dist/cjs/fulfillment/index.js",
       "default": "./dist/esm/fulfillment/index.js"
     },
+    "./features": {
+      "types": "./dist/esm/features/index.d.ts",
+      "import": "./dist/esm/features/index.js",
+      "require": "./dist/cjs/features/index.js",
+      "default": "./dist/esm/features/index.js"
+    },
     "./inventory": {
       "types": "./dist/esm/inventory/index.d.ts",
       "import": "./dist/esm/inventory/index.js",
@@ -159,6 +165,9 @@
       ],
       "fulfillment": [
         "dist/esm/fulfillment/index.d.ts"
+      ],
+      "features": [
+        "dist/esm/features/index.d.ts"
       ],
       "inventory": [
         "dist/esm/inventory/index.d.ts"

@@ -133,6 +133,12 @@
       "require": "./dist/cjs/suppliers/index.js",
       "default": "./dist/esm/suppliers/index.js"
     },
+    "./tasks": {
+      "types": "./dist/esm/tasks/index.d.ts",
+      "import": "./dist/esm/tasks/index.js",
+      "require": "./dist/cjs/tasks/index.js",
+      "default": "./dist/esm/tasks/index.js"
+    },
     "./users": {
       "types": "./dist/esm/users/index.d.ts",
       "import": "./dist/esm/users/index.js",
@@ -198,6 +204,9 @@
       ],
       "suppliers": [
         "dist/esm/suppliers/index.d.ts"
+      ],
+      "tasks": [
+        "dist/esm/tasks/index.d.ts"
       ],
       "users": [
         "dist/esm/users/index.d.ts"

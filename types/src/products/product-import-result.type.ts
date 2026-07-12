@@ -23,6 +23,7 @@ export type ProductImportInventoryActionDto =
   | 'skip'
   | 'conflict'
 export type ProductImportSkuConflictPolicyDto = 'reject' | 'derive-sku'
+export type ProductImportPhotoPolicyDto = 'import' | 'skip'
 
 export interface ProductImportDecisionMetadataDto {
   /** Stable key used to preserve edits across AI re-proposals. */
@@ -131,7 +132,19 @@ interface ProductImportLocationMappingV2BaseDto extends ProductImportDecisionMet
   readonly rowCount: number
 }
 
-interface ProductImportCreateAreaMappingV2BaseDto extends ProductImportLocationMappingV2BaseDto {
+/** Empty areas to create directly beneath an imported inventory target area. */
+export interface ProductImportChildAreaDto {
+  readonly name: string
+}
+
+interface ProductImportChildAreaSetupDto {
+  readonly childAreas?: readonly ProductImportChildAreaDto[]
+}
+
+interface ProductImportCreateAreaMappingV2BaseDto
+  extends
+    ProductImportLocationMappingV2BaseDto,
+    ProductImportChildAreaSetupDto {
   readonly action: 'create-area'
   readonly targetAreaId?: never
   readonly areaPath: string
@@ -145,13 +158,14 @@ export type ProductImportLocationMappingV2Dto =
       readonly targetAreaId?: never
       readonly areaPath?: never
     })
-  | (ProductImportLocationMappingV2BaseDto & {
-      readonly action: 'use-existing-area'
-      readonly targetLocationId: string
-      readonly targetLocationName?: string
-      readonly targetAreaId: string
-      readonly areaPath?: string
-    })
+  | (ProductImportLocationMappingV2BaseDto &
+      ProductImportChildAreaSetupDto & {
+        readonly action: 'use-existing-area'
+        readonly targetLocationId: string
+        readonly targetLocationName?: string
+        readonly targetAreaId: string
+        readonly areaPath?: string
+      })
   | (ProductImportLocationMappingV2BaseDto & {
       readonly action: 'create-location'
       readonly targetLocationId?: never
@@ -293,6 +307,11 @@ export interface ProductImportPreviewDto {
   readonly totalRows: number
   readonly itemRows: number
   readonly folderRows: number
+  /**
+   * Number of non-empty photo URL cells across source product rows.
+   * Repeated URLs in separate source cells are counted separately.
+   */
+  readonly photoUrlCount: number
   readonly importableRows: number
   readonly missingRequiredRows: number
   readonly duplicateSkuConflicts: readonly ProductImportDuplicateSkuConflictDto[]
@@ -307,6 +326,8 @@ export interface ProductImportPreviewDto {
 export interface ProductImportApprovedPlanDto {
   /** Legacy plans are unversioned; editable plans use ProductImportApprovedPlanV2Dto. */
   readonly planVersion?: never
+  /** Omitted plans preserve the legacy behavior and import photos. */
+  readonly photoPolicy?: ProductImportPhotoPolicyDto
   readonly skuConflictPolicy?: ProductImportSkuConflictPolicyDto
   /** Per-conflict decisions override the global conflict policy. */
   readonly skuConflictResolutions?: readonly ProductImportSkuConflictResolutionDto[]
@@ -343,6 +364,7 @@ export type ProductImportPlanDto =
 
 export interface ProductImportLockedDecisionKeysDto {
   readonly skuConflictPolicy?: boolean
+  readonly photoPolicy?: boolean
   readonly missingLocationStrategy?: boolean
   /** Stable category mapping keys that AI re-proposals must preserve. */
   readonly categoryMappings?: readonly string[]
@@ -362,6 +384,8 @@ export interface ProductImportProposalGuidanceDto {
 export interface ProductImportAiProposalDto {
   /** Legacy proposals are unversioned; editable proposals use ProductImportAiProposalV2Dto. */
   readonly planVersion?: never
+  /** Omitted plans preserve the legacy behavior and import photos. */
+  readonly photoPolicy?: ProductImportPhotoPolicyDto
   readonly proposalSource?: ProductImportProposalSourceDto
   readonly format: ProductImportFormatDto | 'unknown'
   readonly confidence: number

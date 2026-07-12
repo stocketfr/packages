@@ -10,6 +10,8 @@ export interface ErrorResponseDto {
   message: string | string[];
   error: string;
   code?: ErrorCode;
+  messageKey?: string;
+  messageArgs?: Readonly<Record<string, unknown>>;
   path: string;
   timestamp: string;
 }

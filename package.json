@@ -5,7 +5,7 @@
   "scripts": {
     "build": "pnpm -r --if-present build",
     "changeset": "changeset",
-    "publish:prepare": "pnpm --filter @stocket/types barrels && pnpm build",
+    "publish:prepare": "pnpm --filter @stocketfr/types barrels && pnpm build",
     "release": "pnpm publish:prepare && changeset publish",
     "version:packages": "changeset version"
   },

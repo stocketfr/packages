@@ -9,8 +9,8 @@ Before starting work on any issue, ensure it is added to the **[Stocket Improvem
 - **Barrel generation** only exports `.type.ts` and `.enum.ts` files — other file suffixes are ignored.
 - **After adding/removing files** in `types/`, you must run barrels then build in order:
   ```bash
-  pnpm --filter @stocket/types barrels
-  pnpm --filter @stocket/types build
+  pnpm --filter @stocketfr/types barrels
+  pnpm --filter @stocketfr/types build
   ```
   Forgetting the barrels step means new exports won't be available to consumers.
 - **Package releases use Changesets.** Add a changeset whenever a publishable package changes. Merges to `main` update a version PR; merging that PR publishes stable packages to GitHub Packages.

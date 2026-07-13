@@ -1,21 +1,21 @@
 # Stocket shared packages
 
-This repository publishes the shared `@stocket/*` packages used by the frontend and backend. Package source remains public, while GitHub Packages provides immutable versions for reproducible cross-repository builds.
+This repository publishes the shared `@stocketfr/*` packages used by the frontend and backend. Package source remains public, while GitHub Packages provides immutable versions for reproducible cross-repository builds.
 
 ## Packages
 
-- `@stocket/types` — API contracts, schemas, and shared domain vocabulary
-- `@stocket/emails` — transactional email templates
-- `@stocket/tsconfig` — shared TypeScript configuration
-- `@stocket/eslint-config` — shared lint configuration
+- `@stocketfr/types` — API contracts, schemas, and shared domain vocabulary
+- `@stocketfr/emails` — transactional email templates
+- `@stocketfr/tsconfig` — shared TypeScript configuration
+- `@stocketfr/eslint-config` — shared lint configuration
 
 ## Local authentication
 
 GitHub Packages requires authentication even for public npm packages. Create a classic GitHub token with `read:packages`, expose it as `GITHUB_PACKAGES_TOKEN`, and configure pnpm once:
 
 ```sh
-pnpm config set --global @stocket:registry https://npm.pkg.github.com
-pnpm config set --global //npm.pkg.github.com/:_authToken '${GITHUB_PACKAGES_TOKEN}'
+pnpm config set --global @stocketfr:registry https://npm.pkg.github.com
+pnpm config set --global //npm.pkg.github.com/:_authToken "${GITHUB_PACKAGES_TOKEN}"
 ```
 
 GitHub Actions uses its short-lived `GITHUB_TOKEN`; no long-lived package token is stored in repository secrets.

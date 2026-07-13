@@ -36,7 +36,7 @@ jobs:
       - name: Detect publishable changes
         id: changesets
         run: |
-          pnpm changeset status --output /tmp/changeset-status.json
+          pnpm changeset status --since "${{ github.event.pull_request.base.sha }}" --output /tmp/changeset-status.json
           count="$(node -p "require('/tmp/changeset-status.json').releases.length")"
           if [ "$count" -gt 0 ]; then
             echo "has_releases=true" >> "$GITHUB_OUTPUT"

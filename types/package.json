@@ -1,6 +1,6 @@
 {
   "name": "@stocket/types",
-  "private": true,
+  "version": "1.7.3",
   "type": "module",
   "description": "Shared TypeScript interfaces and enums for Stocket",
   "license": "AGPL-3.0",
@@ -216,6 +216,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
   "dependencies": {
     "zod": "catalog:"
   },

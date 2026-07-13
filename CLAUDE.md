@@ -13,4 +13,6 @@ Before starting work on any issue, ensure it is added to the **[Stocket Improvem
   pnpm --filter @stocket/types build
   ```
   Forgetting the barrels step means new exports won't be available to consumers.
-- **Packages are workspace-only.** `types/`, `eslint-config/`, and `tsconfig/` are consumed through `workspace:*` links by app repos. Do not bump versions just for local package changes; there is no npm publish/tag workflow.
+- **Package releases use Changesets.** Add a changeset whenever a publishable package changes. Merges to `main` update a version PR; merging that PR publishes stable packages to GitHub Packages.
+- **Cross-repository testing uses snapshots.** Package PRs from branches in this repository publish immutable versions under a `pr-<number>` tag. Consumer PRs pin the exact snapshot version until the stable release is available.
+- **Registry authentication stays at the boundary.** GitHub Actions uses its short-lived `GITHUB_TOKEN`. Developers configure a personal `read:packages` token outside the repository; never commit one.

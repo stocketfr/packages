@@ -1,0 +1,73 @@
+name: Publish package snapshot
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: package-snapshot-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: "@stocketfr"
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Detect publishable changes
+        id: changesets
+        run: |
+          pnpm changeset status --since "${{ github.event.pull_request.base.sha }}" --output /tmp/changeset-status.json
+          count="$(node -p "require('/tmp/changeset-status.json').releases.length")"
+          if [ "$count" -gt 0 ]; then
+            echo "has_releases=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_releases=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Version snapshot packages
+        if: steps.changesets.outputs.has_releases == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SNAPSHOT_TAG: pr-${{ github.event.pull_request.number }}
+        run: pnpm changeset version --snapshot "$SNAPSHOT_TAG"
+
+      - name: Build publishable packages
+        if: steps.changesets.outputs.has_releases == 'true'
+        run: pnpm publish:prepare
+
+      - name: Publish snapshot packages
+        if: steps.changesets.outputs.has_releases == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SNAPSHOT_TAG: pr-${{ github.event.pull_request.number }}
+        run: pnpm changeset publish --tag "$SNAPSHOT_TAG" --no-git-tag
+
+      - name: Summarize snapshot versions
+        if: steps.changesets.outputs.has_releases == 'true'
+        run: |
+          {
+            echo '### Published package snapshots'
+            for package in types tsconfig emails eslint-config; do
+              node -e "const value=require('./$package/package.json'); console.log('- '+value.name+'@'+value.version)"
+            done
+          } >> "$GITHUB_STEP_SUMMARY"

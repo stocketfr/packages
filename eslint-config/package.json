@@ -1,7 +1,7 @@
 {
-  "name": "@stocket/eslint-config",
-  "private": true,
-  "description": "Shared ESLint configurations for Stocket Inventory monorepo",
+  "name": "@stocketfr/eslint-config",
+  "version": "1.2.2",
+  "description": "Shared ESLint configurations for Stocket applications",
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
@@ -17,6 +17,10 @@
   "files": [
     "*.js"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
   "peerDependencies": {
     "eslint": ">=8.0.0",
     "prettier": ">=3.0.0",

@@ -1,6 +1,6 @@
 {
-  "name": "@stocket/emails",
-  "private": true,
+  "name": "@stocketfr/emails",
+  "version": "0.0.0",
   "type": "module",
   "description": "Transactional email templates (react-email) for Stocket",
   "license": "AGPL-3.0",
@@ -23,6 +23,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
   "sideEffects": false,
   "dependencies": {
     "@react-email/components": "catalog:",

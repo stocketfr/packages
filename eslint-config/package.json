@@ -1,6 +1,6 @@
 {
   "name": "@stocketfr/eslint-config",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Shared ESLint configurations for Stocket applications",
   "license": "AGPL-3.0",
   "repository": {

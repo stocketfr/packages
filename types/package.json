@@ -1,6 +1,6 @@
 {
   "name": "@stocketfr/types",
-  "version": "1.7.3",
+  "version": "1.8.0",
   "type": "module",
   "description": "Shared TypeScript interfaces and enums for Stocket",
   "license": "AGPL-3.0",

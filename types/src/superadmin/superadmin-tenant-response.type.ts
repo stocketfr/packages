@@ -1,11 +1,6 @@
-export interface SuperAdminTenantResponse {
-  readonly id: string
-  readonly name: string
-  readonly slug: string
-  readonly primaryHostname: string | null
-  readonly createdAt: string
-}
+import type { Schema } from 'effect';
+import type { SuperAdminTenantListResponseSchema, SuperAdminTenantResponseSchema } from './superadmin-response.schema';
 
-export interface SuperAdminTenantListResponse {
-  readonly data: readonly SuperAdminTenantResponse[]
-}
+export type SuperAdminTenantResponse = Schema.Schema.Type<typeof SuperAdminTenantResponseSchema>;
+
+export type SuperAdminTenantListResponse = Schema.Schema.Type<typeof SuperAdminTenantListResponseSchema>;

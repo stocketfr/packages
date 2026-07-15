@@ -1,7 +1,4 @@
-import type { PaginationMeta } from '../common/pagination-meta.type'
-import type { ClientResponseDto } from './client-response.type'
+import type { Schema } from 'effect';
+import type { PaginatedClientsResponseSchema } from './paginated-clients-response.schema';
 
-export interface PaginatedClientsResponseDto {
-  data: ClientResponseDto[]
-  meta: PaginationMeta
-}
+export type PaginatedClientsResponseDto = Schema.Schema.Type<typeof PaginatedClientsResponseSchema>;

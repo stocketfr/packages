@@ -1,6 +1,4 @@
-export interface SessionClaimsResponseDto {
-  user_id: string
-  session_id: string
-  expires_at: number
-  issued_at: number
-}
+import type { Schema } from 'effect';
+import type { SessionClaimsResponseSchema } from './auth-response.schema';
+
+export type SessionClaimsResponseDto = Schema.Schema.Type<typeof SessionClaimsResponseSchema>;

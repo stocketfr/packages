@@ -1,16 +1,4 @@
-import type { ProductImportResultDto } from '../products/product-import-result.type'
+import type { Schema } from 'effect';
+import type { SuperAdminCreateTenantResponseSchema } from './superadmin-response.schema';
 
-export interface SuperAdminCreateTenantResponse {
-  readonly tenant: {
-    readonly id: string
-    readonly name: string
-    readonly slug: string
-    readonly hostname: string
-  }
-  readonly admin: {
-    readonly id: string
-    readonly email: string
-    readonly name: string
-  }
-  readonly productImport?: ProductImportResultDto
-}
+export type SuperAdminCreateTenantResponse = Schema.Schema.Type<typeof SuperAdminCreateTenantResponseSchema>;

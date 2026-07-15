@@ -1,4 +1,6 @@
+import type { Schema } from 'effect'
 import type { LocationType } from '../locations/location-type.enum'
+import type { ProductImportResultSchema } from './product-import-result.schema'
 
 export type ProductImportTypeDto =
   | 'auto'
@@ -50,21 +52,9 @@ export interface ProductImportErrorDto {
   error: string
 }
 
-export interface ProductImportResultDto {
-  categoriesCreated: number
-  locationsCreated: number
-  areasCreated: number
-  /** @deprecated Supplier imports are reserved for a later Smart Import version. */
-  readonly suppliersCreated?: number
-  productsCreated: number
-  productsUpdated: number
-  inventoryRecordsCreated: number
-  inventoryRecordsUpdated: number
-  photosCreated: number
-  photosSkipped: number
-  rowsSkipped: number
-  errors: ProductImportErrorDto[]
-}
+export type ProductImportResultDto = Schema.Schema.Type<
+  typeof ProductImportResultSchema
+>
 
 export interface ProductImportWarningDto {
   readonly row?: number

@@ -1,17 +1,6 @@
-import type { ErrorCode } from './error-code.enum'
+import type { Schema } from 'effect';
+import type { ErrorResponseSchema } from './error-response.schema';
 
-export enum ErrorType {
-  BAD_REQUEST = 'BadRequest',
-  NOT_FOUND = 'NotFound',
-}
+export { ErrorType } from './error-type.enum';
 
-export interface ErrorResponseDto {
-  statusCode: number;
-  message: string | string[];
-  error: string;
-  code?: ErrorCode;
-  messageKey?: string;
-  messageArgs?: Readonly<Record<string, unknown>>;
-  path: string;
-  timestamp: string;
-}
+export type ErrorResponseDto = Schema.Schema.Type<typeof ErrorResponseSchema>;

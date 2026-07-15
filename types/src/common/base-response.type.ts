@@ -1,11 +1,6 @@
-export interface BaseResponseDto {
-  created_at: string | Date
-  updated_at: string | Date
-}
+import type { Schema } from 'effect';
+import type { BaseAuditResponseSchema, BaseResponseSchema } from './base-response.schema';
 
-export interface BaseAuditResponseDto extends BaseResponseDto {
-  deleted_at?: string | Date | null
-  created_by?: string | null
-  updated_by?: string | null
-  deleted_by?: string | null
-}
+export type BaseResponseDto = Schema.Schema.Type<typeof BaseResponseSchema>;
+
+export type BaseAuditResponseDto = Schema.Schema.Type<typeof BaseAuditResponseSchema>;

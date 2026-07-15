@@ -1,8 +1,4 @@
-export interface ProfileResponseDto {
-  id: string
-  name: string
-  email: string
-  image?: string
-  createdAt: string
-  updatedAt: string
-}
+import type { Schema } from 'effect';
+import type { ProfileResponseSchema } from './auth-response.schema';
+
+export type ProfileResponseDto = Schema.Schema.Type<typeof ProfileResponseSchema>;

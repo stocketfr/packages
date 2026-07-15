@@ -1,7 +1,4 @@
-import type { PaginationMeta } from '../common/pagination-meta.type'
-import type { TaskResponseDto } from './task-response.type'
+import type { Schema } from 'effect';
+import type { PaginatedTasksResponseSchema } from './paginated-tasks-response.schema';
 
-export interface PaginatedTasksResponseDto {
-  readonly data: TaskResponseDto[]
-  readonly meta: PaginationMeta
-}
+export type PaginatedTasksResponseDto = Schema.Schema.Type<typeof PaginatedTasksResponseSchema>;

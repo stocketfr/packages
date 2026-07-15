@@ -1,7 +1,4 @@
-import type { PaginationMeta } from '../common/pagination-meta.type'
-import type { SupplierResponseDto } from './supplier-response.type'
+import type { Schema } from 'effect';
+import type { PaginatedSuppliersResponseSchema } from './paginated-suppliers-response.schema';
 
-export interface PaginatedSuppliersResponseDto {
-  data: SupplierResponseDto[]
-  meta: PaginationMeta
-}
+export type PaginatedSuppliersResponseDto = Schema.Schema.Type<typeof PaginatedSuppliersResponseSchema>;

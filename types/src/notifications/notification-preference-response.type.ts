@@ -1,12 +1,9 @@
-import type { NotificationCategory } from './notification-category.enum'
-import type { NotificationChannel } from './notification-channel.enum'
+import type { Schema } from 'effect';
+import type {
+  NotificationPreferenceSchema,
+  NotificationPreferencesResponseSchema,
+} from './notification-preferences.schema';
 
-export interface NotificationPreferenceDto {
-  category: NotificationCategory
-  channel: NotificationChannel
-  enabled: boolean
-}
+export type NotificationPreferenceDto = Schema.Schema.Type<typeof NotificationPreferenceSchema>;
 
-export interface NotificationPreferencesResponseDto {
-  preferences: NotificationPreferenceDto[]
-}
+export type NotificationPreferencesResponseDto = Schema.Schema.Type<typeof NotificationPreferencesResponseSchema>;

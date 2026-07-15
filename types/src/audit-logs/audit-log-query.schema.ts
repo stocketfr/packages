@@ -1,36 +1,9 @@
-import { Schema } from 'effect'
-import { LimitSchema, PageSchema } from '../common/schema-helpers.schema'
-import { AuditAction } from './audit-action.enum'
-import { AuditEntityType } from './audit-entity-type.enum'
+import { Schema } from 'effect';
+import { LimitSchema, PageSchema } from '../common/schema-helpers.schema';
+import { AuditActionSchema } from './audit-action.schema';
+import { AuditEntityTypeSchema } from './audit-entity-type.schema';
 
-const AuditEntityTypeValues = [
-  AuditEntityType.PRODUCT,
-  AuditEntityType.CATEGORY,
-  AuditEntityType.SUPPLIER,
-  AuditEntityType.LOCATION,
-  AuditEntityType.AREA,
-  AuditEntityType.CLIENT,
-  AuditEntityType.INVENTORY,
-  AuditEntityType.ROLE,
-  AuditEntityType.STOCK_MOVEMENT,
-  AuditEntityType.ORDER,
-  AuditEntityType.ORDER_ITEM,
-  AuditEntityType.PHOTO,
-] as const
-
-export const AuditEntityTypeSchema = Schema.Literal(...AuditEntityTypeValues)
-
-const AuditActionValues = [
-  AuditAction.CREATE,
-  AuditAction.UPDATE,
-  AuditAction.DELETE,
-  AuditAction.RESTORE,
-  AuditAction.ADD_PHOTO,
-  AuditAction.STATUS_CHANGE,
-  AuditAction.ADJUST_QUANTITY,
-] as const
-
-export const AuditLogIdSchema = Schema.UUID.annotations({ identifier: 'AuditLogId' })
+export const AuditLogIdSchema = Schema.UUID.annotations({ identifier: 'AuditLogId' });
 
 export const AuditLogQuerySchema = Schema.Struct({
   page: Schema.optionalWith(PageSchema, { default: () => 1 }),
@@ -38,7 +11,7 @@ export const AuditLogQuerySchema = Schema.Struct({
   entity_type: Schema.optional(AuditEntityTypeSchema),
   entity_id: Schema.optional(Schema.UUID),
   user_id: Schema.optional(Schema.UUID),
-  action: Schema.optional(Schema.Literal(...AuditActionValues)),
+  action: Schema.optional(AuditActionSchema),
   from_date: Schema.optional(Schema.DateFromString),
   to_date: Schema.optional(Schema.DateFromString),
-}).annotations({ identifier: 'AuditLogQuery' })
+}).annotations({ identifier: 'AuditLogQuery' });

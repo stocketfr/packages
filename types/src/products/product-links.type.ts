@@ -1,8 +1,4 @@
-import type { HateoasLink } from '../common/hateoas-link.type'
+import type { Schema } from 'effect';
+import type { ProductLinksSchema } from './product-links.schema';
 
-export interface ProductLinksDto {
-  self: HateoasLink
-  update: HateoasLink
-  delete: HateoasLink
-  category: HateoasLink
-}
+export type ProductLinksDto = Schema.Schema.Type<typeof ProductLinksSchema>;

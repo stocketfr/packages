@@ -1,6 +1,4 @@
-export interface ProductSummaryDto {
-  id: string
-  sku: string
-  name: string
-  unit: string | null
-}
+import type { Schema } from 'effect';
+import type { ProductSummarySchema } from './product-summary.schema';
+
+export type ProductSummaryDto = Schema.Schema.Type<typeof ProductSummarySchema>;

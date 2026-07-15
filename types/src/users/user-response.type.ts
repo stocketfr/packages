@@ -1,11 +1,4 @@
-export interface UserResponseDto {
-  id: string
-  name: string
-  email: string
-  image: string | null
-  roles: string[]
-  banned: boolean
-  banReason: string | null
-  banExpires: string | Date | null
-  createdAt: string | Date
-}
+import type { Schema } from 'effect';
+import type { UserResponseSchema } from './user-response.schema';
+
+export type UserResponseDto = Schema.Schema.Type<typeof UserResponseSchema>;

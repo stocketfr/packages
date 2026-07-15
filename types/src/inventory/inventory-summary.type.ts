@@ -1,4 +1,4 @@
-export interface InventorySummaryDto {
-  low_stock_count: number
-  expiring_soon_count: number
-}
+import type { Schema } from 'effect';
+import type { InventorySummarySchema } from './inventory-summary.schema';
+
+export type InventorySummaryDto = Schema.Schema.Type<typeof InventorySummarySchema>;

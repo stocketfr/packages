@@ -1,7 +1,4 @@
-export interface AreaSummaryDto {
-  id: string
-  name: string
-  code: string
-  /** Full ancestor path within the location, for example `Bay E / Shelf 3`. */
-  path?: string
-}
+import type { Schema } from 'effect';
+import type { AreaSummarySchema } from './area-summary.schema';
+
+export type AreaSummaryDto = Schema.Schema.Type<typeof AreaSummarySchema>;

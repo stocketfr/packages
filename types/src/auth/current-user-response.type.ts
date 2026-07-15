@@ -1,17 +1,4 @@
-import type { Permission } from './permission.enum'
-import type { Resource } from './resource.enum'
-import type { FeatureStates, PlanKey } from '../features'
+import type { Schema } from 'effect';
+import type { CurrentUserResponseSchema } from './auth-response.schema';
 
-export interface CurrentUserResponseDto {
-  id: string
-  name: string
-  email: string
-  image?: string
-  tenantId: string
-  tenantName: string
-  tenantSlug: string
-  planKey: PlanKey
-  features: FeatureStates
-  roles: string[]
-  permissions: Partial<Record<Resource, Permission[]>>
-}
+export type CurrentUserResponseDto = Schema.Schema.Type<typeof CurrentUserResponseSchema>;

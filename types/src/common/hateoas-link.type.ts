@@ -1,4 +1,4 @@
-export interface HateoasLink {
-  href: string
-  method?: string
-}
+import type { Schema } from 'effect';
+import type { HateoasLinkSchema } from './hateoas-link.schema';
+
+export type HateoasLink = Schema.Schema.Type<typeof HateoasLinkSchema>;

@@ -1,14 +1,6 @@
-import { Schema } from 'effect'
-import { EmailSchema } from '../common/schema-helpers.schema'
-import { ClientStatus } from './client-status.enum'
-
-const ClientStatusValues = [
-  ClientStatus.ACTIVE,
-  ClientStatus.SUSPENDED,
-  ClientStatus.INACTIVE,
-] as const
-
-const ClientStatusSchema = Schema.Literal(...ClientStatusValues)
+import { Schema } from 'effect';
+import { EmailSchema } from '../common/schema-helpers.schema';
+import { ClientStatusSchema } from './client-status.schema';
 
 export const CreateClientSchema = Schema.Struct({
   company_name: Schema.Trim.pipe(Schema.maxLength(200)),
@@ -22,7 +14,7 @@ export const CreateClientSchema = Schema.Struct({
   payment_terms: Schema.optional(Schema.String.pipe(Schema.maxLength(200))),
   credit_limit: Schema.optional(Schema.Number.pipe(Schema.nonNegative())),
   notes: Schema.optional(Schema.String),
-}).annotations({ identifier: 'CreateClient' })
+}).annotations({ identifier: 'CreateClient' });
 
 export const UpdateClientSchema = Schema.Struct({
   company_name: Schema.optional(Schema.Trim.pipe(Schema.maxLength(200))),
@@ -36,4 +28,4 @@ export const UpdateClientSchema = Schema.Struct({
   payment_terms: Schema.optional(Schema.String.pipe(Schema.maxLength(200))),
   credit_limit: Schema.optional(Schema.Number.pipe(Schema.nonNegative())),
   notes: Schema.optional(Schema.String),
-}).annotations({ identifier: 'UpdateClient' })
+}).annotations({ identifier: 'UpdateClient' });

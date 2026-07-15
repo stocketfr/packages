@@ -1,7 +1,4 @@
-import type { PaginationMeta } from '../common/pagination-meta.type'
-import type { InventoryResponseDto } from './inventory-response.type'
+import type { Schema } from 'effect';
+import type { PaginatedInventoryResponseSchema } from './paginated-inventory-response.schema';
 
-export interface PaginatedInventoryResponseDto {
-  data: InventoryResponseDto[]
-  meta: PaginationMeta
-}
+export type PaginatedInventoryResponseDto = Schema.Schema.Type<typeof PaginatedInventoryResponseSchema>;

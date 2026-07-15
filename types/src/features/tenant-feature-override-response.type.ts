@@ -1,11 +1,4 @@
-import type { FeatureKey } from './feature-key.enum'
+import type { Schema } from 'effect';
+import type { TenantFeatureOverrideResponseSchema } from './tenant-feature-override-response.schema';
 
-export interface TenantFeatureOverrideResponseDto {
-  featureKey: FeatureKey
-  enabled: boolean
-  reason: string | null
-  expires_at: string | Date | null
-  updated_at: string | Date
-  updated_by: string | null
-}
-
+export type TenantFeatureOverrideResponseDto = Schema.Schema.Type<typeof TenantFeatureOverrideResponseSchema>;

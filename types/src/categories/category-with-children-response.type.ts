@@ -1,9 +1,3 @@
-import type { BaseResponseDto } from '../common/base-response.type'
+import type { CategoryWithChildrenResponse } from './category-with-children-response.schema';
 
-export interface CategoryWithChildrenResponseDto extends BaseResponseDto {
-  id: string
-  name: string
-  parent_id: string | null
-  description: string | null
-  children: CategoryWithChildrenResponseDto[]
-}
+export type CategoryWithChildrenResponseDto = CategoryWithChildrenResponse;

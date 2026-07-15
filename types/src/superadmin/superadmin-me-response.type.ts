@@ -1,6 +1,4 @@
-export interface SuperAdminMeResponse {
-  readonly id: string
-  readonly email: string
-  readonly name: string
-  readonly isSuperAdmin: true
-}
+import type { Schema } from 'effect';
+import type { SuperAdminMeResponseSchema } from './superadmin-response.schema';
+
+export type SuperAdminMeResponse = Schema.Schema.Type<typeof SuperAdminMeResponseSchema>;

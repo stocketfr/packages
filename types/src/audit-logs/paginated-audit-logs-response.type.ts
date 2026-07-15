@@ -1,7 +1,4 @@
-import type { PaginationMeta } from '../common/pagination-meta.type'
-import type { AuditLogResponseDto } from './audit-log-response.type'
+import type { Schema } from 'effect';
+import type { PaginatedAuditLogsResponseSchema } from './paginated-audit-logs-response.schema';
 
-export interface PaginatedAuditLogsResponseDto {
-  data: AuditLogResponseDto[]
-  meta: PaginationMeta
-}
+export type PaginatedAuditLogsResponseDto = Schema.Schema.Type<typeof PaginatedAuditLogsResponseSchema>;

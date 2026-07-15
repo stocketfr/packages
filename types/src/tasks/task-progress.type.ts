@@ -1,11 +1,6 @@
-export type TaskProgressMessageArgs = Readonly<Record<string, string | number>>
+import type { Schema } from 'effect';
+import type { TaskProgressMessageArgsSchema, TaskProgressSchema } from './task-progress.schema';
 
-export interface TaskProgressDto {
-  readonly total: number | null
-  readonly processed: number
-  readonly failed: number
-  readonly percent: number | null
-  readonly message: string | null
-  readonly message_key: string | null
-  readonly message_args: TaskProgressMessageArgs | null
-}
+export type TaskProgressMessageArgs = Schema.Schema.Type<typeof TaskProgressMessageArgsSchema>;
+
+export type TaskProgressDto = Schema.Schema.Type<typeof TaskProgressSchema>;

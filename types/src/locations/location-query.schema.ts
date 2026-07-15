@@ -1,15 +1,8 @@
-import { Schema } from 'effect'
-import { LimitSchema, PageSchema } from '../common/schema-helpers.schema'
-import { SortOrder } from '../common/sort-order.enum'
-import { LocationSortField } from './location-sort-field.enum'
-import { LocationType } from './location-type.enum'
-
-const LocationTypeValues = [
-  LocationType.WAREHOUSE,
-  LocationType.SUPPLIER,
-  LocationType.IN_TRANSIT,
-  LocationType.CLIENT,
-] as const;
+import { Schema } from 'effect';
+import { LimitSchema, PageSchema } from '../common/schema-helpers.schema';
+import { SortOrder } from '../common/sort-order.enum';
+import { LocationSortField } from './location-sort-field.enum';
+import { LocationTypeSchema } from './location-type.schema';
 
 const LocationSortFieldValues = [
   LocationSortField.NAME,
@@ -28,7 +21,7 @@ export const LocationQuerySchema = Schema.Struct({
   page: Schema.optionalWith(PageSchema, { default: () => 1 }),
   limit: Schema.optionalWith(LimitSchema, { default: () => 20 }),
   search: Schema.optional(Schema.Trim),
-  type: Schema.optional(Schema.Literal(...LocationTypeValues)),
+  type: Schema.optional(LocationTypeSchema),
   is_active: Schema.optional(Schema.BooleanFromString),
   sort_by: Schema.optionalWith(Schema.Literal(...LocationSortFieldValues), {
     default: () => LocationSortField.NAME,

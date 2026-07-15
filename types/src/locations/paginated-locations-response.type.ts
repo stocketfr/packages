@@ -1,7 +1,4 @@
-import type { PaginationMeta } from '../common/pagination-meta.type'
-import type { LocationResponseDto } from './location-response.type'
+import type { Schema } from 'effect';
+import type { PaginatedLocationsResponseSchema } from './paginated-locations-response.schema';
 
-export interface PaginatedLocationsResponseDto {
-  data: LocationResponseDto[]
-  meta: PaginationMeta
-}
+export type PaginatedLocationsResponseDto = Schema.Schema.Type<typeof PaginatedLocationsResponseSchema>;

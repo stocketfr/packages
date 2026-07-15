@@ -1,8 +1,4 @@
-import type { BaseResponseDto } from '../common/base-response.type'
+import type { Schema } from 'effect';
+import type { CategoryResponseSchema } from './category-response.schema';
 
-export interface CategoryResponseDto extends BaseResponseDto {
-  id: string
-  name: string
-  parent_id: string | null
-  description: string | null
-}
+export type CategoryResponseDto = Schema.Schema.Type<typeof CategoryResponseSchema>;

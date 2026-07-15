@@ -1,7 +1,4 @@
-import type { PaginationMeta } from '../common/pagination-meta.type'
-import type { StockMovementResponseDto } from './stock-movement-response.type'
+import type { Schema } from 'effect';
+import type { PaginatedStockMovementsResponseSchema } from './paginated-stock-movements-response.schema';
 
-export interface PaginatedStockMovementsResponseDto {
-  data: StockMovementResponseDto[]
-  meta: PaginationMeta
-}
+export type PaginatedStockMovementsResponseDto = Schema.Schema.Type<typeof PaginatedStockMovementsResponseSchema>;

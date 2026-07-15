@@ -1,4 +1,4 @@
-export interface PoweredByDto {
-  name: string
-  url: string
-}
+import type { Schema } from 'effect';
+import type { PoweredBySchema } from './powered-by.schema';
+
+export type PoweredByDto = Schema.Schema.Type<typeof PoweredBySchema>;

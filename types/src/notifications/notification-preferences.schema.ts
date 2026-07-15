@@ -1,23 +1,23 @@
-import { Schema } from 'effect'
-import { NotificationCategory } from './notification-category.enum'
-import { NotificationChannel } from './notification-channel.enum'
-
-const CategoryValues = [
-  NotificationCategory.ACCOUNT,
-  NotificationCategory.INVENTORY_ALERTS,
-  NotificationCategory.ORDER_LIFECYCLE,
-] as const
-
-const ChannelValues = [
-  NotificationChannel.EMAIL,
-] as const
+import { Schema } from 'effect';
+import { NotificationCategorySchema } from './notification-category.enum';
+import { NotificationChannelSchema } from './notification-channel.enum';
 
 export const NotificationPreferenceUpdateSchema = Schema.Struct({
-  category: Schema.Literal(...CategoryValues),
-  channel: Schema.Literal(...ChannelValues),
+  category: NotificationCategorySchema,
+  channel: NotificationChannelSchema,
   enabled: Schema.Boolean,
-}).annotations({ identifier: 'NotificationPreferenceUpdate' })
+}).annotations({ identifier: 'NotificationPreferenceUpdate' });
 
 export const UpdateNotificationPreferencesSchema = Schema.Struct({
   preferences: Schema.Array(NotificationPreferenceUpdateSchema),
-}).annotations({ identifier: 'UpdateNotificationPreferences' })
+}).annotations({ identifier: 'UpdateNotificationPreferences' });
+
+export const NotificationPreferenceSchema = Schema.mutable(NotificationPreferenceUpdateSchema).annotations({
+  identifier: 'NotificationPreference',
+});
+
+export const NotificationPreferencesResponseSchema = Schema.mutable(
+  Schema.Struct({
+    preferences: Schema.mutable(Schema.Array(NotificationPreferenceSchema)),
+  }),
+).annotations({ identifier: 'NotificationPreferencesResponse' });

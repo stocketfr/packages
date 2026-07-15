@@ -1,10 +1,4 @@
-export interface PhotoResponseDto {
-  id: string
-  product_id: string
-  filename: string
-  mimetype: string
-  size: number
-  uploaded_by: string | null
-  display_order: number
-  created_at: Date
-}
+import type { Schema } from 'effect';
+import type { PhotoResponseSchema } from './photo-response.schema';
+
+export type PhotoResponseDto = Schema.Schema.Type<typeof PhotoResponseSchema>;

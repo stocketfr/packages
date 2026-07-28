@@ -1,0 +1,65 @@
+name: Release content proof
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 27a3def483e926b57b58d2db1e0cbca10ff6f890
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: "@stocketfr"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm publish:prepare
+      - name: Compare local release-source packs with published artifacts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -eu
+          mkdir -p /tmp/local /tmp/released proof
+          for entry in emails:0.1.0 tsconfig:1.3.2 types:1.8.0; do
+            package=${entry%%:*}
+            version=${entry#*:}
+            (
+              cd "$package"
+              pnpm pack --pack-destination /tmp/local
+            )
+            (
+              cd /tmp/released
+              npm pack "@stocketfr/$package@$version"
+            )
+            archive="stocketfr-$package-$version.tgz"
+            mkdir -p "/tmp/extracted/$package/local" "/tmp/extracted/$package/released"
+            tar -xzf "/tmp/local/$archive" -C "/tmp/extracted/$package/local"
+            tar -xzf "/tmp/released/$archive" -C "/tmp/extracted/$package/released"
+            (
+              cd "/tmp/extracted/$package/local/package"
+              find . -type f -print0 | sort -z | xargs -0 sha256sum
+            ) > "proof/$package-local.sha256"
+            (
+              cd "/tmp/extracted/$package/released/package"
+              find . -type f -print0 | sort -z | xargs -0 sha256sum
+            ) > "proof/$package-released.sha256"
+            diff -u "proof/$package-released.sha256" "proof/$package-local.sha256"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: release-content-proof
+          path: proof
+          if-no-files-found: error
